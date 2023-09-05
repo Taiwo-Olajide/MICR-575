@@ -1,4 +1,4 @@
-# Taiwo Olajide Homework 2
+# Taiwo Olajide Homework2
 
 ## 1. What were the main issues in the Reinhard and Rogoff issue, and how best could they have been avoided?
 
