@@ -1,0 +1,118 @@
+# Homework 03
+
+# Base R and R Basics
+
+HINT: Remember that you can get help on any function by typing
+`?`(function name). For instance, `?rnorm` gives help on the `rnorm()`
+function.
+
+## Creating and naming variables
+
+1.  Create a variable called `x` and use it to store the result of the
+    calculation `(3*(4+2)`.
+
+    **Answer:** x\<-3\*(4+2)
+
+2.  Calculate the product of `x` (from the above question) times π.
+
+    **Answer:** 6\* 3.142 = 18.852
+
+3.  Use the `getwd()` function to show your current working directory.
+    Is that a good working directory, and what program do you think set
+    it that way?
+
+    **Answer:**
+
+        [1] "C:/Users/tolajide/OneDrive - University of Tennessee/Documents/MICR-575_2"
+
+    Yes. This directory is what is meant to be.
+
+## Vectors
+
+1.  Use the `c()` function to create a vector of numbers.
+
+    **Answer:** Y\<- c(1,2,3,4,5,5,7,8,9,10)
+
+2.  Use the `c()` function to create a vector of characters.
+
+    **Answer:** z\<- c(“one”, “two”,“run,”, “cat”, “dog”, “ate”, “eat”,
+    “met”, “cut”, “but”)
+
+3.  Use the `:` implicit function to create a vector of integers from 1
+    to 10.
+
+    **Answer:** Y\<- c(1:10)
+
+4.  Explain *why* the following code returns what it does. Also address
+    whether you think this was a good decision on the part of the
+    designers of R?
+
+    **Answer:** v1 \<- 1:3 \# This runs to create integers from 1 to 3.
+    It works because there are no other command issued that could affect
+    the execution of the command
+
+    v2 \<- c(1:4) \# This runs also to create integgers from 1 to 4.
+
+    v1 + v2 \# This runs and automatically uses 1 as the fourth integer
+    in the series for V1
+
+    I do think that this is not a good decision as this allows users not
+    to notice errors in the variables they created as they will think
+    that’s the accurate answer to the function.
+
+``` r
+v1 <- 1:3
+v2 <- c(1:4)
+v1 + v2
+```
+
+    [1] 2 4 6 5
+
+5.  Explain what the following code does. It may be helpful to reference
+    the answer to the previous question:
+
+    Answer: c(1, 5, 9) + 3 \# This code considers every integer in the
+    parentheses as a stand along integer and thus performs the addition
+    function on each individual with the integer after the addition
+    function outside the parenthesis. This could also result in errors
+    as the user might intend to use just a single integer in the set.
+
+``` r
+c(1, 5, 9) + 3
+```
+
+    [1]  4  8 12
+
+6.  Remove (delete) every variable in your workspace.
+    1.  **Answer:** rm(x, y, z, v1, v2)
+
+## Graphics
+
+1.  Load the tidyverse package. **NOTE:** Be sure to use the chunk
+    option `message=FALSE` to suppress the messages that tidyverse
+    prints when loaded. These messages are useful in the
+
+    **Answer:** library(tidyverse)
+
+<!-- -->
+
+2.  Recreate the visualization of `body_mass_g` to `flipper_length_mm`,
+    from the penguins data set, that is shown in question 8 of section
+    2.2.5 of [R4DS](https://r4ds.hadley.nz/data-visualize).
+
+    Answer: ggplot(data = penguins, mapping = aes(x = flipper_length_mm,
+    y = body_mass_g, color = bill_depth_mm)) +
+
+    geom_point() + geom_smooth(se = TRUE)
+
+    ![](Hmk_3%20Rplot.png)
+
+3.  Explain why each aesthetic is mapped at the level that it is (i.e.,
+    at the global level, in the `ggplot()` function call, or at the geom
+    level, in the `geom_XXX()` function call). Note: A lot of different
+    options will work, but some options are clearly better than others.
+
+    **Answer:** \# When the Aesthetic is mapped at the global level, all
+    the variables in the set are considered together while if they were
+    used at the geom level, it would be specific to a class of the
+    population dataset.
