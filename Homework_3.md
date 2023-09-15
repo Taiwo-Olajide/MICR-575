@@ -11,11 +11,17 @@ function.
 1.  Create a variable called `x` and use it to store the result of the
     calculation `(3*(4+2)`.
 
-    **Answer:** x\<-3\*(4+2)
+    ``` r
+    x<-3*(4+2)
+    ```
 
 2.  Calculate the product of `x` (from the above question) times π.
 
-    **Answer:** 6\* 3.142 = 18.852
+``` r
+x*3.142
+```
+
+    [1] 56.556
 
 3.  Use the `getwd()` function to show your current working directory.
     Is that a good working directory, and what program do you think set
@@ -31,17 +37,22 @@ function.
 
 1.  Use the `c()` function to create a vector of numbers.
 
-    **Answer:** Y\<- c(1,2,3,4,5,5,7,8,9,10)
+``` r
+Y<- c(1,2,3,4,5,5,7,8,9,10)
+```
 
 2.  Use the `c()` function to create a vector of characters.
 
-    **Answer:** z\<- c(“one”, “two”,“run,”, “cat”, “dog”, “ate”, “eat”,
-    “met”, “cut”, “but”)
+``` r
+z<- c("one", "two","run,", "cat", "dog", "ate", "eat", "met", "cut", "but")
+```
 
 3.  Use the `:` implicit function to create a vector of integers from 1
     to 10.
 
-    **Answer:** Y\<- c(1:10)
+``` r
+y<- c(1:10)
+```
 
 4.  Explain *why* the following code returns what it does. Also address
     whether you think this was a good decision on the part of the
@@ -53,12 +64,21 @@ function.
 
     v2 \<- c(1:4) \# This runs also to create integgers from 1 to 4.
 
-    v1 + v2 \# This runs and automatically uses 1 as the fourth integer
-    in the series for V1
+    ``` r
+    v1 <- 1:3 # This runs to create integers from 1 to 3. It works because there are no other command issued that could affect the execution of the command
 
-    I do think that this is not a good decision as this allows users not
-    to notice errors in the variables they created as they will think
-    that’s the accurate answer to the function.
+    v2 <- c(1:4) # This runs also to create integers from 1 to 4.
+    v1 + v2 # This runs and automatically uses 1 as the fourth integer in the series for V1
+    ```
+
+        Warning in v1 + v2: longer object length is not a multiple of shorter object
+        length
+
+        [1] 2 4 6 5
+
+    ``` r
+    #I do think that this is not a good decision as this allows users not to notice errors in the variables they created as they will think that's the accurate answer to the function.
+    ```
 
 ``` r
 v1 <- 1:3
@@ -84,7 +104,10 @@ c(1, 5, 9) + 3
     [1]  4  8 12
 
 6.  Remove (delete) every variable in your workspace.
-    1.  **Answer:** rm(x, y, z, v1, v2)
+
+``` r
+rm(x, y, z, v1, v2)
+```
 
 ## Graphics
 
@@ -92,18 +115,34 @@ c(1, 5, 9) + 3
     option `message=FALSE` to suppress the messages that tidyverse
     prints when loaded. These messages are useful in the
 
-    **Answer:** library(tidyverse)
-
-<!-- -->
+``` r
+library(tidyverse)
+library(palmerpenguins)
+```
 
 2.  Recreate the visualization of `body_mass_g` to `flipper_length_mm`,
     from the penguins data set, that is shown in question 8 of section
     2.2.5 of [R4DS](https://r4ds.hadley.nz/data-visualize).
 
-    Answer: ggplot(data = penguins, mapping = aes(x = flipper_length_mm,
-    y = body_mass_g, color = bill_depth_mm)) +
+``` r
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = bill_depth_mm)) +
 
     geom_point() + geom_smooth(se = TRUE)
+```
+
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
+
+    Warning: The following aesthetics were dropped during statistical transformation: colour
+    ℹ This can happen when ggplot fails to infer the correct grouping structure in
+      the data.
+    ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+      variable into a factor?
+
+    Warning: Removed 2 rows containing missing values (`geom_point()`).
+
+![](Homework_3_files/figure-commonmark/unnamed-chunk-11-1.png)
 
     ![](Hmk_3%20Rplot.png)
 
@@ -112,7 +151,6 @@ c(1, 5, 9) + 3
     level, in the `geom_XXX()` function call). Note: A lot of different
     options will work, but some options are clearly better than others.
 
-    **Answer:** \# When the Aesthetic is mapped at the global level, all
-    the variables in the set are considered together while if they were
-    used at the geom level, it would be specific to a class of the
-    population dataset.
+``` r
+# When the Aesthetic is mapped at the global level, all the variables in the set are considered together while if they were used at the geom level, it would be specific to a class of the population dataset.
+```
