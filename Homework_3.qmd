@@ -104,9 +104,7 @@ ggplot(data = na.omit(penguins), mapping = aes(x = flipper_length_mm, y = body_m
     geom_point(mapping = aes(color = bill_depth_mm)) + geom_smooth(se = TRUE)
 ```
 
-```         
-![](Hmk_3%20Rplot.png)
-```
+
 
 3.  Explain why each aesthetic is mapped at the level that it is (i.e., at the global level, in the `ggplot()` function call, or at the geom level, in the `geom_XXX()` function call). Note: A lot of different options will work, but some options are clearly better than others.
 

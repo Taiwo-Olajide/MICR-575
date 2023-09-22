@@ -132,8 +132,6 @@ ggplot(data = na.omit(penguins), mapping = aes(x = flipper_length_mm, y = body_m
 
 ![](Homework_3_files/figure-commonmark/unnamed-chunk-11-1.png)
 
-    ![](Hmk_3%20Rplot.png)
-
 3.  Explain why each aesthetic is mapped at the level that it is (i.e.,
     at the global level, in the `ggplot()` function call, or at the geom
     level, in the `geom_XXX()` function call). Note: A lot of different
