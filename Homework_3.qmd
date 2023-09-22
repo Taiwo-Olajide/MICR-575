@@ -84,7 +84,7 @@ c(1, 5, 9) + 3
 6.  Remove (delete) every variable in your workspace.
 
 ```{r}
-rm(x, y, z, v1, v2)
+rm(list = ls())
 ```
 
 ## Graphics
