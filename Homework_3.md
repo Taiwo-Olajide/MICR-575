@@ -125,22 +125,10 @@ library(palmerpenguins)
     2.2.5 of [R4DS](https://r4ds.hadley.nz/data-visualize).
 
 ``` r
-ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = bill_depth_mm)) +
+ggplot(data = na.omit(penguins), mapping = aes(x = flipper_length_mm, y = body_mass_g, )) +
 
-    geom_point() + geom_smooth(se = TRUE)
+    geom_point(mapping = aes(color = bill_depth_mm)) + geom_smooth(se = TRUE)
 ```
-
-    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
-
-    Warning: The following aesthetics were dropped during statistical transformation: colour
-    ℹ This can happen when ggplot fails to infer the correct grouping structure in
-      the data.
-    ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-      variable into a factor?
-
-    Warning: Removed 2 rows containing missing values (`geom_point()`).
 
 ![](Homework_3_files/figure-commonmark/unnamed-chunk-11-1.png)
 
@@ -151,6 +139,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, co
     level, in the `geom_XXX()` function call). Note: A lot of different
     options will work, but some options are clearly better than others.
 
-``` r
-# When the Aesthetic is mapped at the global level, all the variables in the set are considered together while if they were used at the geom level, it would be specific to a class of the population dataset.
-```
+Answer: When the Aesthetic is mapped at the global level, all the
+variables in the set are considered together while if they were used at
+the geom level, it would be specific to a class of the population
+dataset. \`\`\`
