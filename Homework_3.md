@@ -18,10 +18,10 @@ function.
 2.  Calculate the product of `x` (from the above question) times π.
 
 ``` r
-x*3.142
+x*pi
 ```
 
-    [1] 56.556
+    [1] 56.54867
 
 3.  Use the `getwd()` function to show your current working directory.
     Is that a good working directory, and what program do you think set

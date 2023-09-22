@@ -55,8 +55,6 @@ criteria:
 ``` r
 hmk4 <- flights |> filter(origin == "LGA", day == 16 & distance <=2000)
 
-hmk4 <- flights |> filter(origin == "LGA", day == 16 & distance <=2000)
-
 ggplot (data = hmk4, mapping = aes(x = distance , y = air_time,)) +
   
   geom_point()

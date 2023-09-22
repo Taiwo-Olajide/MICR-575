@@ -31,7 +31,6 @@ glimpse("nycflights13")
 #- have a flight distance of less than 2000
 
 ```{r}
-hmk4 <- flights |> filter(origin == "LGA", day == 16 & distance <=2000)
 
 hmk4 <- flights |> filter(origin == "LGA", day == 16 & distance <=2000)
 
