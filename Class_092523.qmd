@@ -1,0 +1,35 @@
+---
+title: "Class_092523"
+format: gfm
+editor: visual
+---
+```{r message=FALSE}
+library(tidyverse)
+Eagle_data <- read.csv("fake_eagle_nest_counts.csv")
+glimpse(Eagle_data)
+```
+
+I think the data is not tidy. The columns represented the year, locations that the readings were taken that could be collapsed to form the regions which they are observations for.
+
+```{r message=FALSE}
+Eagle_data |> 
+  pivot_longer(cols = pacific:rocky.mtn,
+               names_to = "region", 
+               values_to = "value")
+
+```
+
+
+```{r message=FALSE}
+Eagle_table <- Eagle_data |> 
+  pivot_longer(cols = pacific:rocky.mtn,
+               names_to = "region", 
+               values_to = "value")
+Eagle_table |> 
+  ggplot(aes(x = year, y = value, group = region)) +
+  geom_smooth(method = "lm")
+
+```
+
+
+
