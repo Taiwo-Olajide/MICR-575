@@ -14,10 +14,10 @@ editor: visual
 
 #To install \#`nyclflights13`, use \#`install.packages("nycflights13")` (with quotation marks). To load it, use `library(nycflights13)`.
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 library("nycflights13")
-glimpse("nycflights13")
+glimpse(flights)
 ```
 
 # Question 1: filtering
@@ -30,13 +30,12 @@ glimpse("nycflights13")
 
 #- have a flight distance of less than 2000
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 hmk4 <- flights |> filter(origin == "LGA", day == 16 & distance <=2000)
 
 ggplot (data = hmk4, mapping = aes(x = distance , y = air_time,)) +
-  
-  geom_point()
+   geom_point()
 ```
 
 # Question 2: dealing with NAs
@@ -47,7 +46,7 @@ ggplot (data = hmk4, mapping = aes(x = distance , y = air_time,)) +
 
 \#`ggplot()` will automatically remove NA values from the plot, as you may have seen in question 1, but it emits a warning message about that. Of course you could silence the warning message using [chunk options](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html), but how could you prevent them from appearing in the first place?
 
-```{r}
+```{r message=FALSE}
 hmw_04 <- flights |> filter (arr_time & distance) |> na.omit()
 ```
 
@@ -55,8 +54,8 @@ hmw_04 <- flights |> filter (arr_time & distance) |> na.omit()
 
 #Create a data frame of average flight speeds, based on `air_time` and `distance`. Make either a histogram or a density plot of the data. If you like, you may break the data out (e.g. by airline, or some other variable) in a way that you think makes sense.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 flights <- flights |> mutate(avg_speed = distance / air_time, .before = 1)
 flights |> mutate(speed = distance / air_time)
-hist(flights$avg_speed)
+ggplot(flights, aes(x= avg_speed)) + geom_histogram()
 ```

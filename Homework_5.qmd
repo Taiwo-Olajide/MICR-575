@@ -1,0 +1,60 @@
+---
+title: "Homework_5"
+format: gfm
+editor: source
+---
+
+## Question 1
+
+```{r message=FALSE}
+library(tidyverse)
+students <- read_csv("data/r4ds_main_data_students.csv")
+students <- read_csv("data/r4ds_main_data_students.csv", na = c("N/A",""))
+glimpse(students)
+students |> 
+  rename(student_id = 'Student ID',
+         full_name = 'Full Name')
+students |> mutate(mealPlan = factor(mealPlan))
+students |> mutate(AGE = parse_number(if_else(AGE == "five", "5", AGE)))
+```
+
+## Question 2
+
+```{r message=FALSE}
+Employee <- read_csv("data/Employee data.csv")
+view(Employee)
+glimpse(Employee)
+Employee |> 
+  rename(Birth_date = 'bdate',
+         job_category = 'jobcat',
+         sal_begin = 'salbegin',
+         job_time = 'jobtime',
+         previous_exp = 'prevexp')
+Employee |> mutate(gender = factor(gender))
+```
+
+## Question 3a
+
+```{r message=FALSE}
+read_csv("data/colloquium_assessment.csv")
+header <- read_csv("data/colloquium_assessment.csv", n_max = 1)
+Colloquium <- read_csv("data/colloquium_assessment.csv", skip = 5, col_names = FALSE)
+names(Colloquium) <- names(header)
+colloquium_no_na<- na.omit(Colloquium)
+Colloquium <- Colloquium |>
+  filter(!is.na(Colloquium[[1]]))|>
+  rename(duration_in_seconds = 'Duration (in seconds)')
+Colloquium |> 
+  pivot_longer(cols = LocationLatitude:LocationLongitude,
+               names_to = "Location", 
+               values_to = "value")
+
+```
+
+## Question 3b
+
+```{r message=FALSE}
+Colloquium |>
+  summarise(Mean_Q7 = mean(Q7, na.rm = TRUE), Mean_Q8 = mean(Q8, na.rm = TRUE), Mean_Q9 = mean(Q9, na.rm = TRUE), Mean_Q10 = mean(Q10, na.rm = TRUE))
+
+```
