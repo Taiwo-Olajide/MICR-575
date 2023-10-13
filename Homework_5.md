@@ -161,40 +161,24 @@ colloquium_no_na<- na.omit(Colloquium)
 Colloquium <- Colloquium |>
   filter(!is.na(Colloquium[[1]]))|>
   rename(duration_in_seconds = 'Duration (in seconds)')
-Colloquium |> 
-  pivot_longer(cols = LocationLatitude:LocationLongitude,
-               names_to = "Location", 
+Colloquium_longer <- Colloquium |> 
+  pivot_longer(cols = Q7:Q10,
+               names_to = "Questions", 
                values_to = "value")
 ```
-
-    # A tibble: 32 × 25
-       StartDate   EndDate Status Progress duration_in_seconds Finished RecordedDate
-       <chr>       <chr>    <dbl>    <dbl>               <dbl>    <dbl> <chr>       
-     1 11/11/22 9… 11/11/…      0      100                  18        1 11/11/22 9:…
-     2 11/11/22 9… 11/11/…      0      100                  18        1 11/11/22 9:…
-     3 11/11/22 9… 11/11/…      0      100                  31        1 11/11/22 9:…
-     4 11/11/22 9… 11/11/…      0      100                  31        1 11/11/22 9:…
-     5 11/11/22 9… 11/11/…      0      100                 109        1 11/11/22 9:…
-     6 11/11/22 9… 11/11/…      0      100                 109        1 11/11/22 9:…
-     7 11/11/22 9… 11/11/…      0      100                  40        1 11/11/22 9:…
-     8 11/11/22 9… 11/11/…      0      100                  40        1 11/11/22 9:…
-     9 11/11/22 9… 11/11/…      0      100                 243        1 11/11/22 9:…
-    10 11/11/22 9… 11/11/…      0      100                 243        1 11/11/22 9:…
-    # ℹ 22 more rows
-    # ℹ 18 more variables: ResponseId <chr>, RecipientLastName <lgl>,
-    #   RecipientFirstName <lgl>, RecipientEmail <lgl>, ExternalReference <lgl>,
-    #   DistributionChannel <chr>, UserLanguage <chr>, Q4 <dbl>, Q5 <dbl>,
-    #   Q6 <dbl>, Q7 <dbl>, Q8 <dbl>, Q9 <dbl>, Q10 <dbl>, Q11 <dbl>, Q12 <chr>,
-    #   Location <chr>, value <dbl>
 
 ## Question 3b
 
 ``` r
-Colloquium |>
-  summarise(Mean_Q7 = mean(Q7, na.rm = TRUE), Mean_Q8 = mean(Q8, na.rm = TRUE), Mean_Q9 = mean(Q9, na.rm = TRUE), Mean_Q10 = mean(Q10, na.rm = TRUE))
+Colloquium_longer |>
+  group_by(Questions)|>
+  summarise(Mean_Question = mean(value, na.rm = TRUE))
 ```
 
-    # A tibble: 1 × 4
-      Mean_Q7 Mean_Q8 Mean_Q9 Mean_Q10
-        <dbl>   <dbl>   <dbl>    <dbl>
-    1     4.5    4.62    4.31     4.44
+    # A tibble: 4 × 2
+      Questions Mean_Question
+      <chr>             <dbl>
+    1 Q10                4.44
+    2 Q7                 4.5 
+    3 Q8                 4.62
+    4 Q9                 4.31

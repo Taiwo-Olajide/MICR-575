@@ -44,17 +44,18 @@ colloquium_no_na<- na.omit(Colloquium)
 Colloquium <- Colloquium |>
   filter(!is.na(Colloquium[[1]]))|>
   rename(duration_in_seconds = 'Duration (in seconds)')
-Colloquium |> 
-  pivot_longer(cols = LocationLatitude:LocationLongitude,
-               names_to = "Location", 
+Colloquium_longer <- Colloquium |> 
+  pivot_longer(cols = Q7:Q10,
+               names_to = "Questions", 
                values_to = "value")
 
 ```
 
 ## Question 3b
 
-```{r message=FALSE}
-Colloquium |>
-  summarise(Mean_Q7 = mean(Q7, na.rm = TRUE), Mean_Q8 = mean(Q8, na.rm = TRUE), Mean_Q9 = mean(Q9, na.rm = TRUE), Mean_Q10 = mean(Q10, na.rm = TRUE))
+```{r message=FALSE,warning=FALSE}
+Colloquium_longer |>
+  group_by(Questions)|>
+  summarise(Mean_Question = mean(value, na.rm = TRUE))
 
 ```
