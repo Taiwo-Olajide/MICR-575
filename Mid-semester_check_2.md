@@ -1,0 +1,47 @@
+# Mid-semester_check
+
+## Question 1
+
+``` r
+library(tidyverse)
+
+library(nycflights13)
+
+Dep_delay_100 <- flights |>
+  filter(dep_delay > 60) |>
+  group_by(carrier)
+
+Delay_summ <- summarise(Dep_delay_100, mean_dep_delay = mean(dep_delay, na.rm = TRUE), sd_dep_delay = sd(dep_delay, na.rm = TRUE))                   
+```
+
+## Question 2
+
+Num. Carrier Flight airtime 1 B6 527 125 2 EV 4131 118 3 EV 4543 114 4
+EV 4333 113 5 9E 3525 103
+
+``` r
+Second_ans <- flights |> 
+  filter(dep_delay > 30)
+
+Third_ans <- Second_ans |>
+  group_by(carrier,flight) |>
+  summarise(n = n()) |>
+  arrange(desc(n))
+```
+
+## Question 3
+
+``` r
+Mean_airtime<- flights |>
+  group_by (carrier) |>
+  summarise(Mean_airtime = mean(air_time, na.rm = TRUE))
+Median_airtime <- flights |>
+  group_by(carrier) |>
+  summarise(Median_airtime = median(air_time,na.rm = TRUE))
+ggplot(flights, aes(x = carrier, y = air_time)) +
+  geom_boxplot() +
+  geom_point(aes(y = Mean_airtime), data = Mean_airtime,color = "RED", size = 3) +
+  geom_point(aes(y = Median_airtime),data = Median_airtime, color = "BLUE", size = 3)
+```
+
+![](Mid-semester_check_2_files/figure-commonmark/unnamed-chunk-3-1.png)
